@@ -1,0 +1,20 @@
+{
+  "models": [
+    "deepseek-v4.1-flash",
+    "glm-5.3-flash",
+    "qwen3.8-flash"
+  ],
+  "providers": {
+    "provider_a": {
+      "url": "https://api.provider-a.com/v1",
+      "key": "sk-upstream-a"
+    },
+    "provider_b": {
+      "url": "https://api.provider-b.com",
+      "key": "sk-upstream-b",
+      "models": {
+        "deepseek-v4.1-flash": "deepseek-flash"
+      }
+    }
+  }
+}

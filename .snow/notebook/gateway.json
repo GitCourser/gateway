@@ -1,0 +1,76 @@
+{
+  "": [
+    {
+      "id": "notebook-1791293643851_jhkgrwmsr",
+      "filePath": "",
+      "note": "冒烟测试残留进程清理要用 ps + 精确 PID kill，绝不能 pkill -f 宽匹配（会误杀本 CLI 自身命令行）",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_cg6cwo4g4",
+      "filePath": "",
+      "note": "鉴权覆盖所有端点（/v1/models、/v1/models/{id}、透传路径），仅 /health 与 OPTIONS 预检豁免；CLIENT_KEYS 未设置时生成 sk-<48位hex> 随机 key 并打印 warn 日志",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_k3uqz7i68",
+      "filePath": "",
+      "note": "reqwest 0.13 的 TLS 特性名是 rustls（0.12 时代叫 rustls-tls）；rand 0.10 填充随机字节用 RngExt::fill 不是 Rng::fill",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_6qhwvwnyk",
+      "filePath": "",
+      "note": "axum 0.8 路径参数语法是 {id} 和 {*path}，旧的 :id /*path 会 panic",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_vc211kpw0",
+      "filePath": "",
+      "note": "转发细节：请求头剔除 authorization/host/content-length/cf-*，注入上游 key 与 x-account-id；响应剔除 content-encoding/content-length/transfer-encoding 后流式透传（reqwest bytes_stream -> axum Body::from_stream）",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_136m9wc5j",
+      "filePath": "",
+      "note": "会话粘连核心：SessionStore::entry_or_insert_with 在写锁内二次检查+锁内选号，保证同会话并发请求绑定同一上游；命中不改变 FIFO 位置（纯 FIFO 非 LRU）",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    },
+    {
+      "id": "notebook-1791293643851_9ipdj504j",
+      "filePath": "",
+      "note": "架构：main.rs 只做路由装配与会话调度编排；proxy.rs 负责转发与错误响应构造；upstream.rs 负责选号/URL拼接/模型映射；session.rs 是 FIFO 会话存储；config.rs 是 fail-fast 配置加载",
+      "createdAt": "2026-10-06T21:34:03.851",
+      "updatedAt": "2026-10-06T21:34:03.851"
+    }
+  ],
+  ".github/workflows/release.yml": [
+    {
+      "id": "notebook-1791363387775_w0iv9boei",
+      "filePath": ".github/workflows/release.yml",
+      "note": "Dockerfile 固定 ENV CONFIG_FILE=/data/config.json（WORKDIR /data），容器运行须把配置目录挂载到 /data；本地无挂载冒烟时可用 docker cp 注入配置验证",
+      "createdAt": "2026-10-07T16:56:27.775",
+      "updatedAt": "2026-10-07T16:56:27.775"
+    },
+    {
+      "id": "notebook-1791363387775_h7zbdix3l",
+      "filePath": ".github/workflows/release.yml",
+      "note": "Docker 镜像复用构建产物：Linux 二进制以 artifact 传给 docker job，落到 binaries/{amd64,arm64}/gateway 再由 Dockerfile 按 TARGETARCH 复制；.dockerignore 需放行 binaries 目录，否则镜像内无二进制",
+      "createdAt": "2026-10-07T16:56:27.775",
+      "updatedAt": "2026-10-07T16:56:27.775"
+    },
+    {
+      "id": "notebook-1791363387775_fyby2nia7",
+      "filePath": ".github/workflows/release.yml",
+      "note": "发布工作流设计：三平台矩阵（win64 msvc / linux x64 musl / linux arm64 musl 用 ubuntu-24.04-arm 原生 runner），musl 链接器通过 CARGO_TARGET_*_UNKNOWN_LINUX_MUSL_LINKER=musl-gcc 指定",
+      "createdAt": "2026-10-07T16:56:27.775",
+      "updatedAt": "2026-10-07T16:56:27.775"
+    }
+  ]
+}

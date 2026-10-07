@@ -1,0 +1,13 @@
+# 构建上下文排除：只保留 binaries/（CI 注入的二进制）与 Dockerfile
+.git
+.github
+target
+src
+Cargo.toml
+Cargo.lock
+config.json
+config.example.json
+docs
+.snow
+.env
+*.log

@@ -1,0 +1,20 @@
+# Rust / Cargo
+/target/
+**/*.rs.bk
+
+# 本地运行时生成的配置（真实密钥不放仓库，仓库只保留 config.example.json）
+config.json
+
+# 环境变量文件
+.env
+.env.*
+
+# 编辑器与 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 操作系统
+.DS_Store
+Thumbs.db
